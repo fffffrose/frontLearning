@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="prac/js/vue.js">  </script>
+</head>
+<body>
+    <div id="box1">
+        <ul>
+            <li v-for="(number,index) in 5">{{number+'---'+index}}</li>
+        </ul>
+    </div>
+    <script >
+        const vm = new Vue({
+            el:'#box1',
+            data(){
+                return{
+                    firstname:'weiwei',
+                    lastname:'liu',
+                    keyword='',
+                    persons:[
+                        {id:'001',name:'111', age:13},               
+                    ],
+                    sortNum:0
+                }
+            },
+            computed:{
+                sortPerson(){
+                    let arr = this.persons.filters((p)=>{
+                        return p.name.indexOf(this.keyword)!==-1
+                    })
+                    if(this.sortNum){
+                        arr.sort((a,b)=>{
+                            return this.sortNum === 1?a.age-b.age:b.age-a.age
+                        })
+                    }
+
+                    return arr
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="prac/js/vue.js">  </script>
+</head>
+<body>
+    <div id="root">
+        <form action=""@submit.prevent="demo">
+            账户:<input type="text"  name="demo" v-model="userInfo.account" > <br><br>
+            密码:<input type="password" v-model="userInfo.password"><br><br>
+            密码:<input type="number" v-model.number="userInfo.age"><br><br>
+            性别： 
+            男   <input type="radio" name="gender"  value="male"checked="true"v-model="userInfo.gender" >
+            女    <input type="radio" name="gender"  value="female" v-model="userInfo.gender">
+            <br><br>
+            爱好：抽烟<input type="checkbox" name="hobby" value="cigratte"v-model="userInfo.hobby">
+                喝酒<input type="checkbox" name="hobby" value="drink"v-model="userInfo.hobby">
+                烫头<input type="checkbox" name="hobby" value="fire"v-model="userInfo.hobby">
+                <br><br>
+            所属校区：<select name="" id="" v-model='userInfo.city'>
+                    <option value="">请选择校区</option>
+                    <option value="bj">北京</option>
+                    <option value="sh">上海</option>
+                    <option value="hz">杭州 </option>
+            </select><br><br>
+            其他信息: <textarea name="" id=""v-model.lazy='userInfo.other'></textarea><br><br>
+            <input type="checkbox" name="" id=""v-model='userInfo.set'> 阅读并接受 <a>《用户协议》</a>
+            <button>提交</button>
+        </form>
+    </div>
+ 
+ <script>
+     const vm = new Vue({
+         el:'#root',
+         data() {
+             return {
+                userInfo:{
+                    account:'',
+                    password:'',
+                    age:'',
+                    gender:'',
+                    hobby:[],
+                    city:'',
+                    other:'',
+                    set:''
+                 },
+             }
+         },
+         methods:{
+             demo(){
+                console.log(JSON.stringify(this.userInfo))
+             }
+         },
+         beforeCreate() {
+            console.log(this==vm)
+         },
+     })
+ </script>
+
+</body>
+</html>

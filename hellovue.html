@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="prac/js/vue.js">  </script>
+</head>
+<body>
+  <div class="root">
+    Hi,{{weiwei}}??????
+    <a :href="school.url">{{school.name}}</a>
+    单向数据绑定 <input type="text" :value="ValueName">
+    双向数据绑定 <input type="text" v-model="ValueName">
+    <button @click="showInfo1">123</button>
+    <button @click="showInfo2(2)">123</button>
+    <a href="www.baidu.com" @click.prevent="go">dianwo</a>
+    <input type="text" @keydown.tab="showInfo3">
+    <br> <br>
+    姓<input type="text" v-model="firstname">
+    <br>  <br>
+    名<input type="text" v-model="lastname">
+    <br><br>
+    <!-- {{firstname}}+{{lastname}} <br><br> -->
+    {{FULLNAME2}} <br><br>
+    <!-- <input type="text" @click="fullName"> -->
+    {{numbers.a}}
+    <button @click="numbers.a++">dianwo</button>
+    {{FULLNAME2}}
+  </div>
+<script>
+    const vm = new Vue({
+      el:'.root',
+      data(){
+        return{
+          weiwei:'nihao',
+          school:{
+            name:'Belfast',
+            url:'belfast.ac.uk'
+          },      
+          ValueName:`weiwei`,
+          firstname:'刘',
+          lastname:`怡玮`,
+          pickname:`饼饼`,
+          numbers:{
+            a:1,
+            b:2
+          }
+        }
+      },
+      methods:{
+        showInfo1(event){
+          console.log(this)
+        },
+        showInfo2(num){
+          console.log(event)
+        },
+        go(e){
+          // e.preventDefault()
+          alert(13)
+        },
+        showInfo3(e){
+          console.log(e.key);
+        },
+        // fullName1(){
+        //   return this.lastname+this.firstname
+        // },
+        // fullName(){
+        //   event.target.value = this.lastname+this.firstname
+        // }
+       
+      },
+      computed:{
+        FULLNAME2(){
+            // return this.firstname+this.lastname
+            // setTimeout(()=>{
+              // console.log(this);
+              return this.firstname +' ' +this.lastname
+            // },1000)
+          }
+        },
+      watch:{
+        'numbers.a':{
+          handler(){
+            console.log(1111);
+          }
+        }
+      }
+
+    })
+  </script>
+</body>
+</html>
